@@ -9,7 +9,7 @@ $currentAttempt = 0;
 $numOfTries = 6;
 $wrongAnswers = 0;
 $availibleLetters = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
-$correctLetters = array("m", "o", "n", "n", "e", "y");
+$correctLetters = array("m", "o", "n", "e", "y");
 
 
 $attemptTest = new attempt(6);
@@ -50,20 +50,12 @@ function draw($wrongAnswers)
     {
         case 5: echo "__|__     /   " . "\n";
         break;
-        //case 6: echo "__|__     /  \ " . "\n";
-        //break;
-
+        case 6: echo "__|__     /  \ " . "\n";
+        break;
+        default: echo "__|__        " . "\n";
     }
-    echo "__|__     " . "\n";
 }
 
-//    __________
-//    | /      |
-//    |/       O
-//    |      --|--
-//    |        |
-
-//  __|__     / \ "
 
 for ($i = $currentAttempt; $i < $numOfTries; $i++)
 {
@@ -81,7 +73,7 @@ draw($wrongAnswers);
 
 
     $currentGuess = $currentGuess . $askLetter;
-    echo $currentGuess . "\n";
+    //echo $currentGuess . "\n";
 
 
 
@@ -119,14 +111,17 @@ draw($wrongAnswers);
 }
 
 
-
 if ($currentAttempt = 6)
 {
-    $endGame = new hangman6(1);
-    echo $endGame;
+    echo "
+        __________
+        | /      |
+        |/       O
+        |      --|--
+        |        |
+      __|__     / \ " . "\n";
     echo "YOU LOSE" . "\n";
     echo "GAME OVER" . "\n";
-
 }
 
 
@@ -167,22 +162,11 @@ function removeTiles($tiles, $correctLetters, $askLetter)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 //bugs and other things
-// word has to be entered in order
-// can only be "money"          shuffle array("money", "shark", "chaos", "coin", "grain", "nursery", "error", "slippery", "juice", "evil");
+//tiles do not work if you put in more than 1 right letter
+//^ word has to be entered in order
+// the word can only be "money unless you change the word and correct answers to go with it"
+//^shuffle array("money", "shark", "chaos", "coin", "grain", "nursery", "error", "slippery", "juice", "evil");
 
 
 
