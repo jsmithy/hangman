@@ -33,41 +33,45 @@ class attempt
 
 }
 
+// not used
 
 
-class hiddenWord
-{
-    private $wordList;
+//class hiddenWord
+//{
+//    private $wordList;
+//
+//
+//    public function __construct($chosenWords)
+//    {
+//        $this->wordList = $chosenWords;
+//    }
+//
+//
+//    public function getWordList()
+//    {
+//        return $this->wordList;
+//    }
+//
+//
+//    public function setWordList($chosenWords)
+//    {
+//        $this->wordList = $chosenWords;
+//        return $this;
+//    }
+//
+//
+//    public function __toString()
+//    {
+//        return "The word is " . $this->getWordList() . "\n";
+//
+//    }
 
 
-    public function __construct($chosenWords)
-    {
-        $this->wordList = $chosenWords;
-    }
-
-
-    public function getWordList()
-    {
-        return $this->wordList;
-    }
-
-
-    public function setWordList($chosenWords)
-    {
-        $this->wordList = $chosenWords;
-        return $this;
-    }
-
-
-    public function __toString()
-    {
-        return "The word is " . $this->getWordList() . "\n";
-
-    }
-
-}
+//}
 
 //not used anymore
+
+
 ////head
 //class hangman1
 //{
