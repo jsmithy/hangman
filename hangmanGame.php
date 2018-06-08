@@ -10,8 +10,8 @@ shuffle($wordList);
 //$wordTest = "money";
 
 //not added
-//function playHangman()
-//{
+function playHangman()
+{
 //variables
     $currentGuess = "";
     $currentAttempt = 0;
@@ -45,16 +45,17 @@ shuffle($wordList);
         "y",
         "z"
     );
-    $correctLetters = array("m", "o", "n", "e", "y");
+    $correctLetters = array("j", "u", "i", "c", "e");
 //$correctLetters2 =
     $lives = 6;
+    $lines = "_ _ _ _ _" . "\n";
 
 //test variables
-    $replace1 = array(0 => "m");
-    $replace2 = array(1 => "o");
-    $replace3 = array(2 => "n");
-    $replace4 = array(3 => "e");
-    $replace5 = array(4 => "y");
+    $replace1 = array(0 => "j");
+    $replace2 = array(1 => "u");
+    $replace3 = array(2 => "i");
+    $replace4 = array(3 => "c");
+    $replace5 = array(4 => "e");
 
 
 //more variables
@@ -67,46 +68,79 @@ shuffle($wordList);
 
     echo implode(" ", $tiles);
 
-    function showLives($lives)
-    {
-        for ($i = 0; $i < $lives; $i++) {
-            echo "❤️ ";
+    if (!function_exists('showLives')) {
+        function showLives($lives)
+        {
+            for ($i = 0; $i < $lives; $i++) {
+                echo "❤️ ";
+            }
+        }
+    }
+    if (!function_exists('draw')) {
+        function draw($wrongAnswers)
+        {
+            echo "  __________" . "\n";
+            echo "  | /      | " . "\n";
+            echo $wrongAnswers > 0 ? "  |/       O" . "\n" : "  |/          " . "\n";
+            switch ($wrongAnswers) {
+                case 2:
+                    echo "  |        |" . "\n";
+                    break;
+                case 3:
+                    echo "  |      --|" . "\n";
+                    break;
+                case 4:
+                    echo "  |      --|--" . "\n";
+                    break;
+                case 5:
+                    echo "  |      --|--" . "\n";
+                    break;
+                default:
+                    echo "  |         " . "\n";
+            }
+            echo $wrongAnswers > 2 ? "  |        |" . "\n" : "  |         " . "\n";
+            switch ($wrongAnswers) {
+                case 5:
+                    echo "__|__     /   " . "\n";
+                    break;
+                case 6:
+                    echo "__|__     /  \ " . "\n";
+                    break;
+                default:
+                    echo "__|__        " . "\n";
+            }
         }
     }
 
-    function draw($wrongAnswers)
-    {
-        echo "  __________" . "\n";
-        echo "  | /      | " . "\n";
-        echo $wrongAnswers > 0 ? "  |/       O" . "\n" : "  |/          " . "\n";
-        switch ($wrongAnswers) {
-            case 2:
-                echo "  |        |" . "\n";
-                break;
-            case 3:
-                echo "  |      --|" . "\n";
-                break;
-            case 4:
-                echo "  |      --|--" . "\n";
-                break;
-            case 5:
-                echo "  |      --|--" . "\n";
-                break;
-            default:
-                echo "  |         " . "\n";
-        }
-        echo $wrongAnswers > 2 ? "  |        |" . "\n" : "  |         " . "\n";
-        switch ($wrongAnswers) {
-            case 5:
-                echo "__|__     /   " . "\n";
-                break;
-            case 6:
-                echo "__|__     /  \ " . "\n";
-                break;
-            default:
-                echo "__|__        " . "\n";
+    if (!function_exists('removeTiles')) {
+        function removeTiles($askLetter, $correctLetters, $tiles, $replace1, $replace2, $replace3, $replace4, $replace5)
+        {
+            if ($askLetter == $correctLetters[0]) {
+                $newWord = array_replace($tiles, $replace1);
+                echo implode(" ", $newWord) . "\n";
+            }
+            if ($askLetter == $correctLetters[1]) {
+                $newWord = array_replace($tiles, $replace2);
+                echo implode(" ", $newWord) . "\n";
+            }
+            if ($askLetter == $correctLetters[2]) {
+                $newWord = array_replace($tiles, $replace3);
+                echo implode(" ", $newWord) . "\n";
+            }
+            if ($askLetter == $correctLetters[3]) {
+                $newWord = array_replace($tiles, $replace4);
+                echo implode(" ", $newWord) . "\n";
+            }
+            if ($askLetter == $correctLetters[4]) {
+                $newWord = array_replace($tiles, $replace5);
+                echo implode(" ", $newWord) . "\n";
+            }
         }
     }
+
+
+
+
 
     for ($i = 0; $i < count($correctLetters); $i++) {
         array_push($tiles, "_");
@@ -120,7 +154,7 @@ shuffle($wordList);
 
         showLives($lives);
         echo "\n";
-
+        echo $lines;
         echo "\n";
 
         draw($wrongAnswers);
@@ -162,7 +196,7 @@ shuffle($wordList);
 
         if ($currentGuess === implode("", $correctLetters)) {
             echo "\n";
-            echo "CONGRATS YOU WIN" . "\n";
+            echo "CONGRATS YOU WIN 🎉🎈" . "\n";
             break;
         }
 
@@ -181,35 +215,10 @@ shuffle($wordList);
 
     }
 
-
-    function removeTiles($askLetter, $correctLetters, $tiles, $replace1, $replace2, $replace3, $replace4, $replace5)
-    {
-        if ($askLetter == $correctLetters[0]) {
-            $newWord = array_replace($tiles, $replace1);
-            echo implode(" ", $newWord) . "\n";
-        }
-        if ($askLetter == $correctLetters[1]) {
-            $newWord = array_replace($tiles, $replace2);
-            echo implode(" ", $newWord) . "\n";
-        }
-        if ($askLetter == $correctLetters[2]) {
-            $newWord = array_replace($tiles, $replace3);
-            echo implode(" ", $newWord) . "\n";
-        }
-        if ($askLetter == $correctLetters[3]) {
-            $newWord = array_replace($tiles, $replace4);
-            echo implode(" ", $newWord) . "\n";
-        }
-        if ($askLetter == $correctLetters[4]) {
-            $newWord = array_replace($tiles, $replace5);
-            echo implode(" ", $newWord) . "\n";
-        }
-    }
-
-//}
+}
 
 //almost works
-//playHangman();
+playHangman();
 function playAgain()
 {
     echo "Would you like to play again???: yes / no" . "\n";
@@ -218,7 +227,7 @@ function playAgain()
 
 
     if ($playAgain === "yes") {
-        //playHangman();
+        playHangman();
         Playagain();
 
     } else if ($playAgain === "no") {
@@ -236,7 +245,7 @@ playAgain();
 
 
 //bugs and other things
-//tiles do not work if you put in more than 1 right letter
+//tiles do not work
 //^ word has to be entered in order
 // the word can only be "money unless you change the word and correct answers to go with it"
 //^shuffle array("money", "shark", "chaos", "coin", "grain", "nursery", "error", "slippery", "juice", "evil");
