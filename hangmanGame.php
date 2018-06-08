@@ -9,7 +9,7 @@ $wordList = array("money", "chaos", "grain", "error", "juice");
 shuffle($wordList);
 //$wordTest = "money";
 
-//not added
+
 function playHangman()
 {
 //variables
